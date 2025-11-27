@@ -1,0 +1,109 @@
+{
+  "inkVersion": 21,
+  "root": [
+    [
+      { "->": "start" }
+    ],
+    { "#n": "g-0", "#f": 5 },
+    null
+  ],
+  "listDefs": {},
+  "start": [
+    [
+      "^Hello, world from Ink!",
+      "\n",
+      "^This is a small narrative prototype.",
+      "\n",
+      [
+        "ev",
+        { "^->": "start.0.c-0.$r1" },
+        { "temp=": "$r" },
+        "str",
+        { "->": ".^.s" },
+        [{ "#n": "$r1" }],
+        "/str",
+        "/ev",
+        { "*": "start.0.c-0", "flg": 20 },
+        { "s": ["^Choice A: Continue forward", { "->": "$r", "var": true }, null] }
+      ],
+      [
+        "ev",
+        { "^->": "start.0.c-1.$r1" },
+        { "temp=": "$r" },
+        "str",
+        { "->": ".^.s" },
+        [{ "#n": "$r1" }],
+        "/str",
+        "/ev",
+        { "*": "start.0.c-1", "flg": 20 },
+        { "s": ["^Choice B: Look around", { "->": "$r", "var": true }, null] }
+      ],
+      {
+        "c-0": [
+          "ev",
+          { "^->": "start.0.c-0.$r2" },
+          "/ev",
+          { "temp=": "$r" },
+          { "->": ".^.^.s" },
+          [{ "#n": "$r2" }],
+          "\n",
+          { "->": "next" }
+        ],
+        "c-1": [
+          "ev",
+          { "^->": "start.0.c-1.$r2" },
+          "/ev",
+          { "temp=": "$r" },
+          { "->": ".^.^.s" },
+          [{ "#n": "$r2" }],
+          "\n",
+          { "->": "look_around" }
+        ]
+      }
+    ],
+    { "#n": "start", "#f": 1 }
+  ],
+  "look_around": [
+    [
+      "^You pause and take in your surroundings.",
+      "\n",
+      "^The world feels quiet, expectant.",
+      "\n",
+      [
+        "ev",
+        { "^->": "look_around.0.c-0.$r1" },
+        { "temp=": "$r" },
+        "str",
+        { "->": ".^.s" },
+        [{ "#n": "$r1" }],
+        "/str",
+        "/ev",
+        { "*": "look_around.0.c-0", "flg": 20 },
+        { "s": ["^Continue forward", { "->": "$r", "var": true }, null] }
+      ],
+      {
+        "c-0": [
+          "ev",
+          { "^->": "look_around.0.c-0.$r2" },
+          "/ev",
+          { "temp=": "$r" },
+          { "->": ".^.^.s" },
+          [{ "#n": "$r2" }],
+          "\n",
+          { "->": "next" }
+        ]
+      }
+    ],
+    { "#n": "look_around", "#f": 1 }
+  ],
+  "next": [
+    [
+      "^This is the next part of the story.",
+      "\n",
+      "^You've made progress on your journey.",
+      "\n",
+      "end"
+    ],
+    { "#n": "next", "#f": 1 }
+  ]
+}
